@@ -9,7 +9,7 @@ interface State {
   selectAnswer: (questionId: number, answerIndex: number) => void;
   goNextQuestion: () => void;
   goPreviousQuestion: () => void;
-  reset:() => void
+  reset:()=>void;
 }
 
 export const useQuestionsStore = create<State>()(persist((set, get) => {
@@ -18,7 +18,7 @@ export const useQuestionsStore = create<State>()(persist((set, get) => {
     currentQuestion: 0,
 
     fetchQuestions: async (limit: number) => {
-      const res = await fetch("http://localhost:5173/data.json");
+      const res = await fetch(`/data.json`);
       const data = await res.json();
 
       const questions = data.sort(() => Math.random() - 0.5).slice(0, limit);
